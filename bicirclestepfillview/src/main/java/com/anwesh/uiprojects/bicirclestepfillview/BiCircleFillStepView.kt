@@ -191,4 +191,26 @@ class BiCircleFillStepView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiCircleFillStepView) {
+
+        private val animator : Animator = Animator(view)
+        private val bcfs : BiCircleFillStep = BiCircleFillStep(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            bcfs.draw(canvas, paint)
+            animator.animate {
+                bcfs.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bcfs.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }

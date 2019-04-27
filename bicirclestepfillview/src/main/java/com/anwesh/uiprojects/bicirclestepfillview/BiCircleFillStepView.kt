@@ -18,7 +18,6 @@ val circles : Int = 2
 val scGap : Float = 0.05f
 val scDiv : Double = 0.51
 val strokeFactor : Int = 90
-val sizeFactor : Float = 2.9f
 val foreColor : Int = Color.parseColor("#673AB7")
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rSizeFactor : Float = 6f
@@ -211,6 +210,15 @@ class BiCircleFillStepView(ctx : Context) : View(ctx) {
             bcfs.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+
+        fun create(activity : Activity) : BiCircleFillStepView {
+            val view : BiCircleFillStepView = BiCircleFillStepView(activity)
+            activity.setContentView(view)
+            return view
         }
     }
 }
